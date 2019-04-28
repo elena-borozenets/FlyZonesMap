@@ -5,27 +5,30 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using FlyZonesMap.Service;
+using Microsoft.Ajax.Utilities;
 
 namespace FlyZonesMap.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly PlaceService _placeService;
+        public HomeController()
+        {
+            _placeService = new PlaceService();
+        }
+
+        
+        
         public ActionResult Index()
         {
-            string googleUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyAtGhClpk9gDmflMhxPhwnNpZ0JyRdx6Lw&input=airport&region=ua";
-            WebRequest request = WebRequest.Create(googleUrl);
+            string json;
+            using (StreamReader r = new StreamReader("C:\\Users\\PC\\source\\repos\\FlyZonesMap\\FlyZonesMap\\Controllers\\example.json"))
+            {
+                json = r.ReadToEnd();
+            }
 
-            WebResponse response = request.GetResponse();
-
-            Stream data = response.GetResponseStream();
-
-            StreamReader reader = new StreamReader(data);
-
-            // json-formatted string from maps api
-            string responseFromServer = reader.ReadToEnd();
-            ViewBag.Data = responseFromServer;
-            response.Close();
-
+            _placeService.DeserializeData(json);
             return View();
         }
     }
