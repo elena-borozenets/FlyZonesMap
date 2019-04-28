@@ -52,7 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbContext\FlyZonesMapDbContext.cs" />
+    <Compile Include="Context\FlyZonesMapDbContext.cs" />
+    <Compile Include="Context\FlyZonesMapDbContextInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IPlaceRepository.cs" />
     <Compile Include="Repositories\PlaceRepository.cs" />

@@ -12,10 +12,10 @@ namespace FlyZonesMap.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly PlaceService _placeService;
-        public HomeController()
+        private readonly IPlaceService _placeService;
+        public HomeController(IPlaceService placeService)
         {
-            _placeService = new PlaceService();
+            _placeService = placeService;
         }
 
         
@@ -28,7 +28,8 @@ namespace FlyZonesMap.Controllers
                 json = r.ReadToEnd();
             }
 
-            _placeService.DeserializeData(json);
+            var places = _placeService.DeserializeData(json);
+            _placeService.SavePlaces(places);
             return View();
         }
     }

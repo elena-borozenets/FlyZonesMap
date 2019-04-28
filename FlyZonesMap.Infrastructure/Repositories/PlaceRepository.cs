@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FlyZonesMap.Data.Entities;
-using FlyZonesMap.Infrastructure.DbContext;
+using FlyZonesMap.Infrastructure.Context;
 
 namespace FlyZonesMap.Infrastructure.Repositories
 {

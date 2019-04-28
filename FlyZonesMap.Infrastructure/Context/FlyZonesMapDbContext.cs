@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using FlyZonesMap.Data.Entities;
 
-namespace FlyZonesMap.Infrastructure.DbContext
+namespace FlyZonesMap.Infrastructure.Context
 {
-    public class FlyZonesMapDbContext : System.Data.Entity.DbContext
+    public class FlyZonesMapDbContext : DbContext
     {
         public FlyZonesMapDbContext() : base("FlyZonesMapDbContext")
         {

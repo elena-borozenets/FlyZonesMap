@@ -57,6 +57,10 @@
       <Project>{fb956c06-6064-4e1d-9c18-04cd6f645674}</Project>
       <Name>FlyZonesMap.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FlyZonesMap.Infrastructure\FlyZonesMap.Infrastructure.csproj">
+      <Project>{cca8fc2b-6d6c-43ea-8cdc-3752b5361c45}</Project>
+      <Name>FlyZonesMap.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FlyZonesMap.Models\FlyZonesMap.Models.csproj">
       <Project>{ddb5e3c7-49d8-433e-96d8-10f02cd278ca}</Project>
       <Name>FlyZonesMap.Models</Name>
