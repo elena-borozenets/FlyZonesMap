@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using FlyZonesMap.Data.Entities;
 using FlyZonesMap.Infrastructure.Context;
@@ -11,7 +12,12 @@ namespace FlyZonesMap.Infrastructure.Repositories
         {
             using (var db = new FlyZonesMapDbContext())
             {
-                var places = (from place in db.Places select place).ToList();
+                var places = db.Places
+                    .Include(pl => pl.Location)
+                    .Include(pl => pl.Viewport)
+                    .Include(pl=>pl.Viewport.NortheastLocation)
+                    .Include(pl=>pl.Viewport.SouthwestLocation)
+                    .ToList();
                 return places;
             }
         }

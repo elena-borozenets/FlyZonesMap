@@ -87,5 +87,11 @@ namespace FlyZonesMap.Service
             var mappedPlaces = Mapper.Map<List<Place>,List<PlaceDbo>>(places);
             _placeRepository.SavePlaces(mappedPlaces);
         }
+
+        public List<Place> GetPlaces()
+        {
+            var placesDbo = _placeRepository.GetPlaces();
+            return Mapper.Map<List<PlaceDbo>, List<Place>>(placesDbo);
+        }
     }
 }

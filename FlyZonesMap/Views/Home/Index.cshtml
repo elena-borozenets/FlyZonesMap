@@ -1,4 +1,7 @@
-﻿@*<!DOCTYPE html>
+﻿@using FlyZonesMap.Models
+@model List<Place>
+
+<!DOCTYPE html>
 <html>
 <head>
     <style>
@@ -17,12 +20,47 @@
     // Initialize and add the map
     function initMap() {
         // The location of Uluru
-        var uluru = {lat: -25.344, lng: 131.036};
+        var myArray = [];
+        var myArray2 = [];
+        var locs = [];
+        
+        @foreach (var d in Model)
+        {
+            @:var obj = { };
+            @:var lat = "@d.Location.Lat";
+            @:var lng = "@d.Location.Lng";
+            @:obj.lat = parseFloat(lat.replace(',', '.'));
+            @:obj.lng = parseFloat(lng.replace(',', '.'));
+        @*@:myArray.push("@d.Location.Lat");
+        @:myArray2.push("@d.Location.Lng");*@
+            @:locs.push(obj);
+    }
+        var m1 = locs[0].lat;
+        var m2 = locs[0].lng;
+
+            var uluru = {lat:m1, lng: m2};
         // The map, centered at Uluru
-        var map = new google.maps.Map(
-            document.getElementById('map'), {zoom: 4, center: uluru});
+        var map =new google.maps.Map(document.getElementById('map'), {
+            center: {lat: m1, lng: m2},
+            zoom: 8,
+            mapTypeId: 'terrain'
+        });
         // The marker, positioned at Uluru
-        var marker = new google.maps.Marker({position: uluru, map: map});
+        //var marker = new google.maps.Marker({ position: uluru, map: map });
+
+        for (var l of locs) {
+            // Add the circle for this city to the map.
+            var cityCircle = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: { lat: l.lat, lng: l.lng },
+                radius: 1000
+            });
+        }
     }
 </script>
 <!--Load the API from the specified URL
@@ -34,4 +72,4 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtGhClpk9gDmflMhxPhwnNpZ0JyRdx6Lw&callback=initMap">
 </script>
 </body>
-</html>*@
+</html>
